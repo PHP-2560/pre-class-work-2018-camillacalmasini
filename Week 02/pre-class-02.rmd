@@ -85,14 +85,14 @@ From the first graph, we can see that as the rate increases, the mean decreases.
 ### Part II (PHP 2560 Only)
 
 
-5. R's capacity for data and computation is large to what was available 10 years ago. 
-    a. To show this, generate 1.1 million numbers from the standard exponential distribution and store them in a vector called `big.exp.draws.1`. Calculate the mean and standard deviation.
+5. R's capacity for data and computation is large to what was available 10 years ago.  
+a. To show this, generate 1.1 million numbers from the standard exponential distribution and store them in a vector called `big.exp.draws.1`. Calculate the mean and standard deviation.
 ```{r}
 big.exp.draws.1 <- rexp(n = 1.1 * 10^6)
 mean(big.exp.draws.1)
 sd(big.exp.draws.1)
 ```
-    b. Plot a histogram of `big.exp.draws.1`.  Does it match the function \(1-e^{-x}\)?  Should it?
+b. Plot a histogram of `big.exp.draws.1`.  Does it match the function \(1-e^{-x}\)?  Should it?
 ```{r}
 hist(big.exp.draws.1)
 ```
@@ -102,7 +102,7 @@ Yes, it matches the function, which makes sense because the data follows an expo
 greater <- big.exp.draws.1[big.exp.draws.1 > 1]
 mean(greater)
 ```
-    d. Create a matrix, `big.exp.draws.1.mat`, containing the the values in 
+d. Create a matrix, `big.exp.draws.1.mat`, containing the the values in 
 `big.exp.draws.1`, with 1100 rows and 1000 columns. Use this matrix as the input to the `hist()` function and save the result to a variable of your choice. What happens to your data?
 
 ```{r}
