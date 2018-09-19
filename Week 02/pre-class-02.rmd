@@ -78,18 +78,45 @@ plot(rates, sd)
 ```{r}
 plot(sd, means)
 ```
-
 For each plot, explain in words what's going on.
+
+From the first graph, we can see that as the rate increases, the mean decreases. Similarly, the second graph shows that as the rate increases the standard deviation also decreases. Lastly, from the last graph we see that as the standard deviation increases, the mean also increases.
 
 ### Part II (PHP 2560 Only)
 
 
 5. R's capacity for data and computation is large to what was available 10 years ago. 
     a. To show this, generate 1.1 million numbers from the standard exponential distribution and store them in a vector called `big.exp.draws.1`. Calculate the mean and standard deviation.
-    b. Plot a histogram of `big.exp.draws.1`.  Does it match the function \(1-e^{-x}\)?  Should it? 
+    ```{r}
+big.exp.draws.1 <- rexp(n = 1.1 * 10^6)
+mean(big.exp.draws.1)
+sd(big.exp.draws.1)
+    ```
+    b. Plot a histogram of `big.exp.draws.1`.  Does it match the function \(1-e^{-x}\)?  Should it?
+    ```{r}
+hist(big.exp.draws.1)
+```
+Yes, it matches the function, which makes sense because the data follows an exponential distribution.
     c. Find the mean of all of the entries in `big.exp.draws.1` which are strictly greater than 1. You may need to first create a new vector to identify which elements satisfy this.
+    ```{r}
+greater <- big.exp.draws.1[big.exp.draws.1 > 1]
+mean(greater)
+```
     d. Create a matrix, `big.exp.draws.1.mat`, containing the the values in 
 `big.exp.draws.1`, with 1100 rows and 1000 columns. Use this matrix as the input to the `hist()` function and save the result to a variable of your choice. What happens to your data?
+
+```{r}
+big.exp.draws.1.mat <- matrix(data = big.exp.draws.1, nrow = 1100, ncol = 1000)
+mat.hist <- hist(big.exp.draws.1.mat)
+```
+The histogram looks the same as the one in problem 5b, because the data is still the same. The only difference is that in problem 5b we have a vector whereas here we have a matrix.
     e. Calculate the mean of the 371st column of `big.exp.draws.1.mat`.
+```{r}
+mean(big.exp.draws.1.mat[,371])
+```
     f. Now, find the means of all 1000 columns of `big.exp.draws.1.mat` simultaneously. Plot the histogram of column means.  Explain why its shape does not match the histogram in problem 5b).
-   
+```{r}
+col.means <- apply(big.exp.draws.1.mat, 2, mean)
+hist(col.means)
+```
+In problem 5b, the data follows an exponential distribution. However, in this case, we are taking the mean of the values so the distribution isn't exponential.
