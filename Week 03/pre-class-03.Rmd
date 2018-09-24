@@ -11,17 +11,22 @@ gapminder = gapminder # dataset is called gapminder
 
 1. How many unique countries are represented per continent?
 ```{r}
-
+gapminder %>% 
+  group_by(continent) %>%
+  count()
 
 ```
 
 
 2. Which European nation had the lowest GDP per capita in 1997?
 ```{r}
-
+gapminder %>%
+  filter(continent == "Europe", year == 1997) %>%
+  arrange(gdpPercap)
+  
 
 ```
-
+The European nation with the lowest GDP per capita in 1997 was Albania (GDP per capita = 3193).
 
 3. According to the data available, what was the average life expectancy across each continent in the 1980s?
 ```{r}
