@@ -24,27 +24,34 @@ gapminder %>%
   filter(continent == "Europe", year == 1997) %>%
   arrange(gdpPercap)
   
-
 ```
 The European nation with the lowest GDP per capita in 1997 was Albania (GDP per capita = 3193).
 
 3. According to the data available, what was the average life expectancy across each continent in the 1980s?
 ```{r}
-
+gapminder %>%
+  filter(year >= 1980 & year <= 1989) %>% 
+  group_by(continent) %>%
+  summarize(avg_life_exp = mean(lifeExp))
 
 ```
 
 
 4. What 5 countries have the highest total GDP over all years combined?
 ```{r}
-
-
+gapminder %>% 
+  group_by(country) %>%
+  mutate(totGDP = gdpPercap * pop) %>%
+  summarise(n = sum(totGDP)) %>%
+  arrange(desc(n))
 ```
-
+The US, Japan, China, Germany and the UK have the highest total GDP over all the years
 
 5. What countries and years had life expectancies of at least 80 years? N.b. only output the columns of interest: country, life expectancy and year (in that order).
 ```{r}
-
+gapminder %>%
+  filter(lifeExp >= 80) %>%
+  select(country, lifeExp, year)
 
 ```
 
