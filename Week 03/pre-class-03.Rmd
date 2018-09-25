@@ -52,7 +52,6 @@ The US, Japan, China, Germany and the UK have the highest total GDP over all the
 gapminder %>%
   filter(lifeExp >= 80) %>%
   select(country, lifeExp, year)
-
 ```
 
 
@@ -65,13 +64,21 @@ gapminder %>%
 
 7.  Which combinations of continent (besides Asia) and year have the highest average population across all countries? N.b. your output should include all results sorted by highest average population. With what you already know, this one may stump you. See this Q&A for how to ungroup before arrangeing. This also behaves differently in more recent versions of dplyr.
 ```{r}
-
+gapminder %>% 
+  
+  group_by(continent) %>%
+  
+  
   
 ```
 
 
 8.  Which three countries have had the most consistent population estimates (i.e. lowest standard deviation) across the years of available data?
 ```{r}
+gapminder %>%
+  group_by(country) %>%
+  summarize(std_dev = sd(pop)) %>%
+  arrange(std_dev)
 
 
 ```
