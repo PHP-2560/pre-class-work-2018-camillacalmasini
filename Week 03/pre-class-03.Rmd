@@ -86,10 +86,10 @@ gapminder %>%
 
 9.  Subset gm to only include observations from 1992 and store the results as gm1992. What kind of object is this?
 ```{r}
-
-
+gm1992 <- gapminder %>% filter(year == 1992)
+class(gm1992)
 ```
-
+This is a data frame.
 
 10.  Which observations indicate that the population of a country has decreased from the previous year and the life expectancy has increased from the previous year? See the vignette on window functions.
 ```{r}
