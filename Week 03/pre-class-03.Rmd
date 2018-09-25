@@ -65,11 +65,10 @@ gapminder %>%
 7.  Which combinations of continent (besides Asia) and year have the highest average population across all countries? N.b. your output should include all results sorted by highest average population. With what you already know, this one may stump you. See this Q&A for how to ungroup before arrangeing. This also behaves differently in more recent versions of dplyr.
 ```{r}
 gapminder %>% 
-  
-  group_by(continent) %>%
-  
-  
-  
+  filter(continent != "Asia") %>%
+  group_by(continent, year) %>%
+  summarise(avg_pop = mean(pop)) %>%
+  arrange(desc(avg_pop))
 ```
 
 
@@ -80,9 +79,8 @@ gapminder %>%
   summarize(std_dev = sd(pop)) %>%
   arrange(std_dev)
 
-
 ```
-
+Sao Tome and Principe, Iceland and Montenegro have the most consistent population estimates.
 
 9.  Subset gm to only include observations from 1992 and store the results as gm1992. What kind of object is this?
 ```{r}
@@ -94,5 +92,6 @@ This is a data frame.
 10.  Which observations indicate that the population of a country has decreased from the previous year and the life expectancy has increased from the previous year? See the vignette on window functions.
 ```{r}
 
+  
 
 ```
