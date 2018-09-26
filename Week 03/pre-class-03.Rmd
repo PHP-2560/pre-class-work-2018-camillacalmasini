@@ -13,6 +13,7 @@ gapminder = gapminder # dataset is called gapminder
 ```{r}
 gapminder %>% 
   group_by(continent) %>%
+  #Finding number of distinct countries per continent
   distinct(country) %>%
   count()
 ```
@@ -23,17 +24,17 @@ gapminder %>%
 gapminder %>%
   filter(continent == "Europe", year == 1997) %>%
   arrange(gdpPercap)
-  
 ```
 The European nation with the lowest GDP per capita in 1997 was Albania (GDP per capita = 3193).
 
 3. According to the data available, what was the average life expectancy across each continent in the 1980s?
 ```{r}
 gapminder %>%
+  #Filtering observations in the 1980's only
   filter(year >= 1980 & year <= 1989) %>% 
   group_by(continent) %>%
+  #Creating a column for the avergate life expectancy
   summarize(avg_life_exp = mean(lifeExp))
-
 ```
 
 
@@ -41,15 +42,18 @@ gapminder %>%
 ```{r}
 gapminder %>% 
   group_by(country) %>%
+  #Finding total GDP
   mutate(totGDP = gdpPercap * pop) %>%
-  summarise(n = sum(totGDP)) %>%
-  arrange(desc(n))
+  #totGDPcomb is the total GDP over all the years combined
+  summarise(totGDPcomb = sum(totGDP)) %>%
+  arrange(desc(totGDPcomb))
 ```
 The US, Japan, China, Germany and the UK have the highest total GDP over all the years.
 
 5. What countries and years had life expectancies of at least 80 years? N.b. only output the columns of interest: country, life expectancy and year (in that order).
 ```{r}
 gapminder %>%
+  #Filtering observations where life expectancy is > 80
   filter(lifeExp >= 80) %>%
   select(country, lifeExp, year)
 ```
@@ -59,6 +63,7 @@ gapminder %>%
 ```{r}
 gapminder %>% 
   group_by(country) %>%
+  #Finding correlation between life expectancy and GDP per capita
   summarize(corr = cor(lifeExp, gdpPercap)) %>%
   arrange(desc(corr))
 
@@ -68,8 +73,10 @@ gapminder %>%
 7.  Which combinations of continent (besides Asia) and year have the highest average population across all countries? N.b. your output should include all results sorted by highest average population. With what you already know, this one may stump you. See this Q&A for how to ungroup before arrangeing. This also behaves differently in more recent versions of dplyr.
 ```{r}
 gapminder %>% 
+  #Filtering out all countries in Asia
   filter(continent != "Asia") %>%
   group_by(continent, year) %>%
+  #Finding average population
   summarise(avg_pop = mean(pop)) %>%
   arrange(desc(avg_pop))
 ```
@@ -79,9 +86,9 @@ gapminder %>%
 ```{r}
 gapminder %>%
   group_by(country) %>%
+  #Finding standard deviation
   summarize(std_dev = sd(pop)) %>%
   arrange(std_dev)
-
 ```
 Sao Tome and Principe, Iceland and Montenegro have the most consistent population estimates.
 
@@ -96,5 +103,6 @@ This is a data frame.
 ```{r}
 gapminder %>%
   group_by(country) %>%
+  #Lag compares population and life exp to the previous year
   filter(pop < lag(pop) & lifeExp > lag(lifeExp))
 ```
