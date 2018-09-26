@@ -13,6 +13,7 @@ gapminder = gapminder # dataset is called gapminder
 ```{r}
 gapminder %>% 
   group_by(continent) %>%
+  distinct(country) %>%
   count()
 ```
 
