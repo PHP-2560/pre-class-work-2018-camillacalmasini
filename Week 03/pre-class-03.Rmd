@@ -58,9 +58,8 @@ gapminder %>%
 ```{r}
 gapminder %>% 
   group_by(country) %>%
-  cor(lifeExp, gdpPercap)
-
-#cor(gapminder$lifeExp, gapminder$gdpPercap)
+  summarize(corr = cor(lifeExp, gdpPercap)) %>%
+  arrange(desc(corr))
 
 ```
 
@@ -94,8 +93,7 @@ This is a data frame.
 
 10.  Which observations indicate that the population of a country has decreased from the previous year and the life expectancy has increased from the previous year? See the vignette on window functions.
 ```{r}
-View(gapminder %>%
+gapminder %>%
   group_by(country) %>%
- 
-
+  filter(pop < lag(pop) & lifeExp > lag(lifeExp))
 ```
