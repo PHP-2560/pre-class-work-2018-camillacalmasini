@@ -14,7 +14,6 @@ gapminder = gapminder # dataset is called gapminder
 gapminder %>% 
   group_by(continent) %>%
   count()
-
 ```
 
 
@@ -45,7 +44,7 @@ gapminder %>%
   summarise(n = sum(totGDP)) %>%
   arrange(desc(n))
 ```
-The US, Japan, China, Germany and the UK have the highest total GDP over all the years
+The US, Japan, China, Germany and the UK have the highest total GDP over all the years.
 
 5. What countries and years had life expectancies of at least 80 years? N.b. only output the columns of interest: country, life expectancy and year (in that order).
 ```{r}
@@ -57,7 +56,11 @@ gapminder %>%
 
 6. What 10 countries have the strongest correlation (in either direction) between life expectancy and per capita GDP?
 ```{r}
+gapminder %>% 
+  group_by(country) %>%
+  cor(lifeExp, gdpPercap)
 
+#cor(gapminder$lifeExp, gapminder$gdpPercap)
 
 ```
 
@@ -91,7 +94,8 @@ This is a data frame.
 
 10.  Which observations indicate that the population of a country has decreased from the previous year and the life expectancy has increased from the previous year? See the vignette on window functions.
 ```{r}
-
-  
+View(gapminder %>%
+  group_by(country) %>%
+ 
 
 ```
