@@ -26,7 +26,8 @@ int = seq(0, 1000, by = 1)
 #initialize tot_sum to 0
 tot_sum = 0
 
-for(i in 1:1000){
+#this for loop iterates through each element in int
+for(i in int){
   tot_sum = tot_sum + i
 }
 ```
@@ -35,8 +36,11 @@ B. Now, add all the EVEN integers between 0 and 1000 (hint: use seq())
 ```{r}
 #even_int contains even integers between 0 and 1000
 even_int = seq(0, 1000, by = 2)
+
+#initialize sum_even to 0
 sum_even = 0
 
+#this for loop iterates through each element in even_int 
 for (i in even_int){
   sum_even = sum_even + i
 }
@@ -71,9 +75,12 @@ A. Using a loop, create a new dataframe called survey.clean where all the invali
 ```{r}
 survey.clean = survey
 
+#this for loop iterates through each row and each column of survey
 for(i in 1:nrow(survey)){
   for(j in 2:ncol(survey)){
+    #check if the i, j entry in survey is less than 1 or greater than 5
     if(survey[i, j] < 1 | survey[i,j] > 5){
+      #change the i, j entry in survey.clean to NA
       survey.clean[i, j] = NA
     }
   }
@@ -82,15 +89,21 @@ for(i in 1:nrow(survey)){
 
 B. Now, again using a loop, add a new column to the dataframe called “invalid.answers” that indicates, for each participant, how many bad answers they gave.
 ```{r}
+#initialize num_na to 0
 num_na = 0
 
+#this for loop iterates through each row and column of survey.clean
 for(i in 1:nrow(survey.clean)){
   for(j in 2:ncol(survey.clean)){
+    #check if the entry is NA
     if(is.na(survey.clean[i, j])){
+      #add 1 to the current number of NA's
       num_na = num_na + 1
     }
   }
+  #create a new column with the num_na value
   survey.clean$invalid.answers[i] = num_na
+  #reset the sum to 0 before you look at the next row
   num_na = 0
 }
 ```
