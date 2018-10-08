@@ -102,6 +102,14 @@ standardize.me = function(x){
 }
 ```
 B. Assign all the numeric columns of the original WCGS dataset to a new dataset called WCGS.new.
+```{r}
+library(purrr)
+#pick out columns that are numeric
+nums = map_lgl(wcgs, is.numeric)
+
+#subset numeric columns
+WCGS.new = wcgs[ , nums]
+```
 C. Using a loop and your new function, standardize all the variables WCGS.new dataset.
 D. What should the mean and standard deviation of all your new standardized variables be? Test your prediction by running a loop
 
