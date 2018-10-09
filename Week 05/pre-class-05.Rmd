@@ -116,7 +116,7 @@ for (i in 1:ncol(WCGS.new)){
   WCGS.new[[i]] = standardize.me(WCGS.new[[i]])
 }
 ```
-D. What should the mean and standard deviation of all your new standardized variables be? Test your prediction by running a loop
+D. What should the mean and standard deviation of all your new standardized variables be? Test your prediction by running a loop  
 The mean should be 0 and the standard deviation should be 1, because those are the parameters of a standard normal
 ```{r}
 for (i in 1:ncol(WCGS.new)){
