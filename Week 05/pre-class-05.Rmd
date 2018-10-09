@@ -98,7 +98,7 @@ bmi     Body Mass Index
 A. Create a function called standardize.me() that takes a numeric vector as an argument, and returns the standardized version of the vector. 
 ```{r}
 standardize.me = function(x){
-  (x-mean(x)) / sd(x)
+  (x-mean(x, na.rm = TRUE)) / sd(x, na.rm =TRUE)
 }
 ```
 B. Assign all the numeric columns of the original WCGS dataset to a new dataset called WCGS.new.
@@ -117,8 +117,13 @@ for (i in 1:ncol(WCGS.new)){
 }
 ```
 D. What should the mean and standard deviation of all your new standardized variables be? Test your prediction by running a loop
-
-
+The mean should be 0 and the standard deviation should be 1, because those are the parameters of a standard normal
+```{r}
+for (i in 1:ncol(WCGS.new)){
+  print(mean(WCGS.new[[i]]), na.rm = TRUE)
+  print(sd(WCGS.new[[i]]), na.rm = TRUE)
+}
+```
 
 
 
