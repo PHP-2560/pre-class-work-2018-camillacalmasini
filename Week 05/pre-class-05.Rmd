@@ -130,5 +130,39 @@ for (i in 1:ncol(WCGS.new)){
 ### Question 2: Looping to Calculate
 
 A. Using a loop, calculate the mean weight of the subjects separated by the type of CHD they have.
+```{r}
+library(dplyr)
+table(wcgs$typchd69)
+
+#creating empty vectors for each type
+noCHD = c()
+MIorSD = c()
+silentMI = c()
+angina = c()
+
+#this for loop creates a vector of weights for each type
+for(i in 1:nrow(wcgs)){
+  if(wcgs$typchd69[i] == "no CHD"){
+    noCHD[i] = wcgs$weight[i]
+  } else if (wcgs$typchd69[i] == "MI or SD"){
+    MIorSD[i] = wcgs$weight[i]
+  } else if (wcgs$typchd69[i] == "silent MI"){
+    silentMI[i] = wcgs$weight[i]
+  } else {
+    angina[i] = wcgs$weight[i]
+  }
+}
+
+#calculate mean for each type
+mean(noCHD, na.rm = TRUE)
+mean(MIorSD, na.rm = TRUE)
+mean(silentMI, na.rm = TRUE)
+mean(angina, na.rm = TRUE)
+```
 B. Now do the same thing, but now don’t use a loop
+```{r}
+wcgs %>%
+  group_by(typchd69) %>%
+  summarise(avg_weight = sum(weight)/n())
+```
 
