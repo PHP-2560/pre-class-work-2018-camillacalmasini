@@ -12,18 +12,25 @@ knitr::opts_chunk$set(echo = TRUE)
 
 1. Read the source code for each of the following three functions, puzzle out what they do, and then brainstorm better names.
 
-```
+```{r}
 f1 <- function(string, prefix) {
   substr(string, 1, nchar(prefix)) == prefix
 }
+
 f2 <- function(x) {
   if (length(x) <= 1) return(NULL)
   x[-length(x)]
 }
+
 f3 <- function(x, y) {
   rep(y, length.out = length(x))
 }
 ```
+The first function takes a string and checks whether that string starts with a specified prefix, so it could be called check_prefix.
+
+The second function takes a vector and removes the last element, so it could be called remove_last.
+
+The third function takes in two vectors and replicates the second one until it has the same number of elements as the first one, so it could be called replicate_vec.
 
 2. Compare and contrast rnorm() and MASS::mvrnorm(). How could you make them more consistent?
 
