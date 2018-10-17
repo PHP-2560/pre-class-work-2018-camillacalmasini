@@ -51,7 +51,9 @@ lapply(mtcars, FUN = coeff_of_var)
 ```{r}
 vapply(mtcars, FUN = sd, numeric(1))
 ```
+
     b. Compute the standard deviation of every numeric column in a mixed data frame. (Hint: you’ll need to use vapply() twice.)
+    
 ```{r}
 #iris[vapply(iris, is.numeric, logical(1))] selects only the numeric columns
 vapply(iris[vapply(iris, is.numeric, logical(1))], FUN = sd, numeric(1))
