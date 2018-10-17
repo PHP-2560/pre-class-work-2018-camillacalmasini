@@ -32,8 +32,8 @@ The second function takes a vector and removes the last element, so it could be 
 
 The third function takes in two vectors and replicates the second one until it has the same number of elements as the first one, so it could be called replicate_vec.
 
-2. Compare and contrast rnorm() and MASS::mvrnorm(). How could you make them more consistent?
-rnorm is used to generate a random normally distribured sample. It takes 3 arguments: n, mean, and sd. MASS::mvrnorm produces one or more samples from a multivariate normal distribution and it also takes 3 arguments: n, mu and sigma. To make them more consistent we should use the same names for the arguments. 
+2. Compare and contrast rnorm() and MASS::mvrnorm(). How could you make them more consistent?  
+rnorm is used to generate a random normally distributed sample. It takes 3 arguments: n, mean, and sd. MASS::mvrnorm produces one or more samples from a multivariate normal distribution and it also takes 3 arguments: n, mu and sigma. To make them more consistent we should use the same names for the arguments. 
 
 3. Use `lapply()` and an anonymous function to find the coefficient of variation (the standard deviation divided by the mean) for all columns in the mtcars dataset. 
 
